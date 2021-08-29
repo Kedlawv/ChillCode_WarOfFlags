@@ -4,7 +4,6 @@ import com.chillcode.warOfFlags.actors.*;
 import com.chillcode.warOfFlags.util.Direction;
 import com.chillcode.warOfFlags.util.GameUtils;
 import com.chillcode.warOfFlags.util.Vector;
-import com.codecool.capture_the_flag.actors.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +39,11 @@ public class GameMap {
         // initialize the Actor array to the correct size
         String[] rows = charMatrix.split("\r\n|\r|\n");
         actorMatrix = new Actor[rows.length][rows[0].length()];
+        populateActorMatrix(rows);
 
     }
 
-    public void populateActorMatrix(String[] rows) {
+    private void populateActorMatrix(String[] rows) {
         String[][] matrix = new String[rows.length][rows[0].length()];
         for (int i = 0; i < rows.length; i++) {
             matrix[i] = rows[i].split("");
