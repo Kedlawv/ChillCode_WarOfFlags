@@ -45,5 +45,16 @@ class ActorFactoryTest {
                 () -> ActorFactory.createFromChar(c, gameMap));
     }
 
+    @Test
+    void createPlayerGivenPlayerTeamPaperThenActorPaper(){
+        Player.PlayerTeam team = Player.PlayerTeam.PAPER;
+
+        Actor actual = ActorFactory.createPlayer(team, gameMap);
+
+        assertTrue(actual instanceof Paper);
+    }
+
+
+
 
 }

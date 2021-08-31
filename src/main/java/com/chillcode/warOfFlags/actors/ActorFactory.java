@@ -39,7 +39,19 @@ public class ActorFactory {
      * @return
      */
     public static Actor createPlayer(Player.PlayerTeam team, GameMap mapReference) {
-        throw new RuntimeException("Method not implemented!");
+        Actor actor;
+
+        switch(team){
+            case ROCK: actor = new Rock(getName(),mapReference);
+            break;
+            case PAPER: actor = new Paper(getName(),mapReference);
+            break;
+            case SCISSORS: actor = new Scissors(getName(),mapReference);
+            break;
+            default: throw new IllegalArgumentException();
+        }
+
+        return actor;
     }
 
     /**
@@ -49,7 +61,7 @@ public class ActorFactory {
      * @return
      */
     public static Actor createFlag(GameMap mapReference) {
-        throw new RuntimeException("Method not implemented!");
+        return new Flag(mapReference);
     }
 
     /**
