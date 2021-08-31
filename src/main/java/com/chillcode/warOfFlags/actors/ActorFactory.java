@@ -39,7 +39,19 @@ public class ActorFactory {
      * @return
      */
     public static Actor createPlayer(Player.PlayerTeam team, GameMap mapReference) {
-        throw new RuntimeException("Method not implemented!");
+        Actor actor;
+
+        switch(team){
+            case ROCK: actor = new Rock(getName(),mapReference);
+            break;
+            case PAPER: actor = new Paper(getName(),mapReference);
+            break;
+            case SCISSORS: actor = new Scissors(getName(),mapReference);
+            break;
+            default: throw new IllegalArgumentException();
+        }
+
+        return actor;
     }
 
     /**
@@ -49,18 +61,42 @@ public class ActorFactory {
      * @return
      */
     public static Actor createFlag(GameMap mapReference) {
-        throw new RuntimeException("Method not implemented!");
+        return new Flag(mapReference);
     }
 
     /**
      * Returns a new actor instance, depending on given character
+     * wabu => if character is not one of R,P,S,F,. throw IllegalArgumentException
      *
      * @param c
      * @param mapReference
      * @return
      */
     public static Actor createFromChar(char c, GameMap mapReference) {
-        throw new RuntimeException("Method not implemented!");
+
+        Actor actor;
+        switch (c) {
+            case 'R':
+                actor = new Rock(getName(), mapReference);
+                break;
+            case 'P':
+                actor = new Paper(getName(), mapReference);
+                break;
+            case 'S':
+                actor = new Scissors(getName(), mapReference);
+                break;
+            case 'F':
+                actor = new Flag(mapReference);
+                break;
+            case '.':
+                actor = null;
+                break;
+            default:
+                throw new IllegalArgumentException("Character needs to be one of R,P,S,F or '.'");
+
+        }
+
+        return actor;
     }
 }
 
