@@ -23,7 +23,7 @@ public class Scissors extends Player {
 
     @Override
     public PlayerTeam getTeam() {
-        throw new RuntimeException("Method not implemented!");
+        return PlayerTeam.SCISSORS;
     }
 }
 

@@ -23,6 +23,6 @@ public class Paper extends Player {
 
     @Override
     public PlayerTeam getTeam() {
-        throw new RuntimeException("Method not implemented!");
+        return PlayerTeam.PAPER;
     }
 }
