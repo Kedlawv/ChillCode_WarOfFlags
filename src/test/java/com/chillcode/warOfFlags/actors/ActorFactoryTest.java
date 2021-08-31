@@ -1,10 +1,13 @@
-package com.chillcode.warOfFlags;
+package com.chillcode.warOfFlags.actors;
 
+import com.chillcode.warOfFlags.GameMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class GameMapTest {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class ActorFactoryTest {
 
     public static GameMap gameMap;
 
@@ -25,7 +28,22 @@ class GameMapTest {
     }
 
     @Test
-    void givenAStringMatrixThenCorrectActorMatrix() {
-        Assertions.fail();
+    void createFromCharGivenRThenActorRock() {
+        char c = 'R';
+        Actor expected = new Rock(ActorFactory.getName(), gameMap);
+
+        Actor actual = ActorFactory.createFromChar(c, gameMap);
+
+        assertTrue(actual instanceof Rock);
     }
+
+    @Test
+    void createFromCharGivenZThenIllegalArgumentException() {
+        char c = 'Z';
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> ActorFactory.createFromChar(c, gameMap));
+    }
+
+
 }

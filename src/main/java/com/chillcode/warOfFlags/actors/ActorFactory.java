@@ -54,13 +54,37 @@ public class ActorFactory {
 
     /**
      * Returns a new actor instance, depending on given character
+     * wabu => if character is not one of R,P,S,F,. throw IllegalArgumentException
      *
      * @param c
      * @param mapReference
      * @return
      */
     public static Actor createFromChar(char c, GameMap mapReference) {
-        throw new RuntimeException("Method not implemented!");
+
+        Actor actor;
+        switch (c) {
+            case 'R':
+                actor = new Rock(getName(), mapReference);
+                break;
+            case 'P':
+                actor = new Paper(getName(), mapReference);
+                break;
+            case 'S':
+                actor = new Scissors(getName(), mapReference);
+                break;
+            case 'F':
+                actor = new Flag(mapReference);
+                break;
+            case '.':
+                actor = null;
+                break;
+            default:
+                throw new IllegalArgumentException("Character needs to be one of R,P,S,F or '.'");
+
+        }
+
+        return actor;
     }
 }
 
