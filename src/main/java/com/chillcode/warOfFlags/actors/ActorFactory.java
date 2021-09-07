@@ -24,6 +24,11 @@ public class ActorFactory {
 
     /**
      * Use this method for getting names
+     * todo sort out the one name problem
+     * wabu => not sure what the author meant but this will return always the same name;
+     *      change peek() to poll() and maybe add() the peeked value to rotate the names;
+     *      I'm guessing that the author took a shortcut for testing purposes.
+     *      names filed is final so there is no way to reset the field after a test.
      *
      * @return name
      */
