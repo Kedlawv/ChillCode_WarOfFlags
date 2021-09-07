@@ -32,4 +32,18 @@ class PaperTest {
 
         assertTrue(paper1.equals(paper2));
     }
+
+    @Test
+    void testEqualsGivenTwoPaperWithDiffStateThenNotEquals() {
+
+        Paper paper1 = new Paper("Frodo",gameMap);
+        paper1.setCapturedFlags(2);
+        paper1.setKilledPlayers(2);
+
+        Paper paper2 = new Paper("Bilbo",gameMap);
+        paper2.setCapturedFlags(3);
+        paper2.setKilledPlayers(3);
+
+        assertFalse(paper1.equals(paper2));
+    }
 }

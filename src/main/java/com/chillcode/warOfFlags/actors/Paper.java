@@ -33,9 +33,9 @@ public class Paper extends Player {
 
         Paper otherPaper = (Paper) o;
         return (otherPaper.getName().equals(this.getName())
-                || otherPaper.getKilledPlayers() == this.getKilledPlayers()
-                || otherPaper.isAlive() == this.isAlive()
-                || otherPaper.getCapturedFlags() == this.getCapturedFlags());
+                && otherPaper.getKilledPlayers() == this.getKilledPlayers()
+                && otherPaper.isAlive() == this.isAlive()
+                && otherPaper.getCapturedFlags() == this.getCapturedFlags());
     }
 
 
