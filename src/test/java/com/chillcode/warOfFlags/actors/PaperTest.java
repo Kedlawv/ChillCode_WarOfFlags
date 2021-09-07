@@ -27,8 +27,8 @@ class PaperTest {
         paper1.setKilledPlayers(killedPlayers);
 
         Paper paper2 = new Paper(name,gameMap);
-        paper1.setCapturedFlags(capturedFlags);
-        paper1.setKilledPlayers(killedPlayers);
+        paper2.setCapturedFlags(capturedFlags);
+        paper2.setKilledPlayers(killedPlayers);
 
         assertTrue(paper1.equals(paper2));
     }
