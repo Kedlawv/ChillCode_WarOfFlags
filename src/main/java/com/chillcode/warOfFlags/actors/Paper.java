@@ -25,4 +25,18 @@ public class Paper extends Player {
     public PlayerTeam getTeam() {
         return PlayerTeam.PAPER;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+
+        Paper otherPaper = (Paper) o;
+        return (otherPaper.getName().equals(this.getName())
+                || otherPaper.getKilledPlayers() == this.getKilledPlayers()
+                || otherPaper.isAlive() == this.isAlive()
+                || otherPaper.getCapturedFlags() == this.getCapturedFlags());
+    }
+
+
 }
