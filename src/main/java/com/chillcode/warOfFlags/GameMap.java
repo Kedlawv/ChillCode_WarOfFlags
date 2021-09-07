@@ -44,30 +44,17 @@ public class GameMap {
     }
 
     private void populateActorMatrix(String[] rows) {
-        String[][] matrix = new String[rows.length][rows[0].length()];
+        char[][] matrix = new char[rows.length][rows[0].length()];
         for (int i = 0; i < rows.length; i++) {
-            matrix[i] = rows[i].split("");
+            matrix[i] = rows[i].toCharArray();
         }
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
-                if (matrix[i][j].equals("F")) {
-                    actorMatrix[i][j] = new Flag(this);
-                } else if (matrix[i][j].equals(".")) {
-                    actorMatrix[i][j] = null;
-                } else if (matrix[i][j].equals("R")) {
-                    actorMatrix[i][j] = new Rock(ActorFactory.getName(), this);
-                } else if (matrix[i][j].equals("S")) {
-                    actorMatrix[i][j] = new Scissors(ActorFactory.getName(), this);
-                } else if (matrix[i][j].equals("P")) {
-                    actorMatrix[i][j] = new Paper(ActorFactory.getName(), this);
-                }
-
-
+                char element = matrix[i][j];
+                actorMatrix[i][j] = ActorFactory.createFromChar(element,this);
             }
         }
-
-
     }
 
     /**
