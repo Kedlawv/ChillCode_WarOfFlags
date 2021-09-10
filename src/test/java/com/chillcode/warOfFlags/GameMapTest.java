@@ -3,10 +3,11 @@ package com.chillcode.warOfFlags;
 import com.chillcode.warOfFlags.actors.Actor;
 import com.chillcode.warOfFlags.actors.ActorFactory;
 import com.chillcode.warOfFlags.actors.Player;
+import com.chillcode.warOfFlags.util.Vector;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class GameMapTest {
@@ -66,11 +67,66 @@ class GameMapTest {
         };
 
         Actor[][] actual = gameMap.getActorMatrix();
-        
+
         int expectedMismatches = 3;
         int mismatches = getMismatches(expected, actual);
 
         assertEquals(expectedMismatches, mismatches);
+    }
+
+    @Test
+    public void withinBoundariesGivenAGrid3x3AndVectorWithinBoundariesThenTrue() {
+
+        // grid just to visualize reversed X,Y
+        Vector[][] grid3x3Vector = {
+                {new Vector(0, 0), new Vector(1, 0), new Vector(2, 0)}, // index 0,2 holds vector 2,0
+                {new Vector(0, 1), new Vector(1, 1), new Vector(2, 1)},
+                {new Vector(0, 2), new Vector(1, 2), new Vector(2, 2)}
+        };
+
+        String grid3x3String =
+                "..." + System.lineSeparator() +
+                        "..." + System.lineSeparator() +
+                        "..." + System.lineSeparator();
+
+        GameMap localGameMap = new GameMap(grid3x3String);
+        Vector position = new Vector(1, 1);
+
+        boolean actual = localGameMap.withinBoundaries(position);
+
+        assertTrue(actual);
+    }
+
+    @Test
+    public void withinBoundariesGivenAGrid3x3AndVectorOutOfBoundsXThenFalse() {
+
+        String grid3x3String =
+                "..." + System.lineSeparator() +
+                        "..." + System.lineSeparator() +
+                        "..." + System.lineSeparator();
+
+        GameMap localGameMap = new GameMap(grid3x3String);
+        Vector position = new Vector(3, 1);
+
+        boolean actual = localGameMap.withinBoundaries(position);
+
+        assertFalse(actual);
+    }
+
+    @Test
+    public void withinBoundariesGivenAGrid3x3AndVectorOutOfBoundsYThenFalse() {
+
+        String grid3x3String =
+                "..." + System.lineSeparator() +
+                        "..." + System.lineSeparator() +
+                        "..." + System.lineSeparator();
+
+        GameMap localGameMap = new GameMap(grid3x3String);
+        Vector position = new Vector(1, 3);
+
+        boolean actual = localGameMap.withinBoundaries(position);
+
+        assertFalse(actual);
     }
 
     private int getMismatches(Actor[][] expected, Actor[][] actual) {

@@ -203,7 +203,7 @@ public class GameMap {
      * @return
      */
     public boolean withinBoundaries(Vector position) {
-        return position.getX() < actorMatrix.length && position.getY() < actorMatrix[0].length;
+        return position.getY() < actorMatrix.length && position.getX() < actorMatrix[0].length;
     }
 
     public Actor[][] getActorMatrix() {
