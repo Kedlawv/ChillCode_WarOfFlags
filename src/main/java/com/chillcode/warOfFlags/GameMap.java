@@ -105,6 +105,9 @@ public class GameMap {
      * @return
      */
     public Vector getPosition(Actor actor) {
+        if(actor == null){
+            throw new IllegalArgumentException("Actor can't be null");
+        }
         for (int i = 0; i < actorMatrix.length; i++) {
             for (int j = 0; j < actorMatrix[0].length; j++) {
                 if (actorMatrix[i][j] == actor) {
@@ -112,7 +115,8 @@ public class GameMap {
                 }
             }
         }
-        return null;
+        throw new IllegalArgumentException("Actor not found. Search by identity not equals. " +
+                "Make sure you search for an existing Actor instance.");
     }
 
 
