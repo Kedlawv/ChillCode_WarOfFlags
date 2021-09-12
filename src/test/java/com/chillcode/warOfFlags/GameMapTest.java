@@ -2,6 +2,7 @@ package com.chillcode.warOfFlags;
 
 import com.chillcode.warOfFlags.actors.Actor;
 import com.chillcode.warOfFlags.actors.ActorFactory;
+import com.chillcode.warOfFlags.actors.Paper;
 import com.chillcode.warOfFlags.actors.Player;
 import com.chillcode.warOfFlags.util.Vector;
 import org.junit.jupiter.api.BeforeAll;
@@ -128,6 +129,30 @@ class GameMapTest {
 
         assertFalse(actual);
     }
+
+    @Test
+    public void getPositionForNullThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> gameMap.getPosition(null));
+    }
+
+    @Test
+    public void getPositionForNewActorThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> gameMap.getPosition(new Paper("Absent", gameMap)));
+    }
+
+    @Test
+    public void getPositionGivenExistingActorReturnCorrectVector() {
+        GameMap localGameMap = new GameMap(
+                "F.P" + System.lineSeparator()
+                        + "RPS" + System.lineSeparator() +
+                        ".F.");
+
+        Actor rockIndex1_0VectorX0Y1 = localGameMap.getActorMatrix()[1][0];
+        Vector expected = new Vector(0,1);
+
+        assertEquals(expected, localGameMap.getPosition(rockIndex1_0VectorX0Y1));
+    }
+
 
     private int getMismatches(Actor[][] expected, Actor[][] actual) {
         int mismatches = 0;
