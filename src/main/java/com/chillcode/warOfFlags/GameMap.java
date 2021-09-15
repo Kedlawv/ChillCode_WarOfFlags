@@ -52,7 +52,7 @@ public class GameMap {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 char element = matrix[i][j];
-                actorMatrix[i][j] = ActorFactory.createFromChar(element,this);
+                actorMatrix[i][j] = ActorFactory.createFromChar(element, this);
             }
         }
     }
@@ -94,8 +94,15 @@ public class GameMap {
      * @return
      */
     public Actor getActor(Vector position) {
-        return actorMatrix[position.getY()][position.getX()];
-    }
+        Actor actor;
+        if (withinBoundaries(position)) {
+            actor = actorMatrix[position.getY()][position.getX()];
+        } else {
+            throw new IllegalArgumentException("Position out of bounds");
+        }
+
+        return actor;
+}
 
     /**
      * Returns a position of given actor instance
@@ -105,7 +112,7 @@ public class GameMap {
      * @return
      */
     public Vector getPosition(Actor actor) {
-        if(actor == null){
+        if (actor == null) {
             throw new IllegalArgumentException("Actor can't be null");
         }
         for (int i = 0; i < actorMatrix.length; i++) {
@@ -129,10 +136,12 @@ public class GameMap {
      */
     public void setPosition(Actor actor, Vector position) {
 
-        if(withinBoundaries(position)){
+        if (!withinBoundaries(position)) {
+            throw new IllegalArgumentException("Position is out of bounds");
+        } else if (actorMatrix[position.getY()][position.getX()] != null) {
+            throw new IllegalArgumentException("Position occupied by another Actor");
+        } else {
             actorMatrix[position.getY()][position.getX()] = actor;
-        }else{
-            throw new IllegalArgumentException();
         }
     }
 

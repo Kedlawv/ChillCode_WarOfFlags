@@ -153,6 +153,47 @@ class GameMapTest {
         assertEquals(expected, localGameMap.getPosition(rockIndex1_0VectorX0Y1));
     }
 
+    @Test
+    public void getActorGivenPositionWithinBoundsOfAnActorReturnCorrectActor(){
+        GameMap localGameMap = new GameMap(
+                "F.P" + System.lineSeparator()
+                        + "RPS" + System.lineSeparator() +
+                        ".F.");
+        Vector inputPosition = new Vector(2,0);
+        Actor expected = localGameMap.getActorMatrix()[0][2];
+
+        Actor actual = localGameMap.getActor(inputPosition);
+
+        assertSame(expected, actual);  // same as expected == actual
+    }
+
+    @Test
+    public void getActorGivenPositionOutsideBoundsThrowIllegalArgumentException(){
+        GameMap localGameMap = new GameMap(
+                "F.P" + System.lineSeparator()
+                        + "RPS" + System.lineSeparator() +
+                        ".F.");
+        Vector inputPosition = new Vector(3,0);
+
+        assertThrows(IllegalArgumentException.class, ()-> localGameMap.getActor(inputPosition));
+    }
+
+    @Test
+    public void getActorGivenPositionWithinBoundsForNoActorReturnNull(){
+        GameMap localGameMap = new GameMap(
+                "F.P" + System.lineSeparator()
+                        + "RPS" + System.lineSeparator() +
+                        ".F.");
+        Vector inputPosition = new Vector(2,2);
+        Actor actual = localGameMap.getActor(inputPosition);
+
+        assertNull(actual);
+    }
+
+    @Test
+    public void setPosition(){
+
+    }
 
     private int getMismatches(Actor[][] expected, Actor[][] actual) {
         int mismatches = 0;
