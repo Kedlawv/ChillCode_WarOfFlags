@@ -192,6 +192,26 @@ class GameMapTest {
 
     @Test
     public void setPosition(){
+        //todo pull in branch <actors> for implementation of equals()
+
+        GameMap localGameMapInitial = new GameMap(
+                "F.P" + System.lineSeparator()
+                        + "RPS" + System.lineSeparator() +
+                        ".F.");
+        GameMap localGameMapExpected = new GameMap(
+                "FP." + System.lineSeparator()
+                        + "RPS" + System.lineSeparator() +
+                        ".F.");
+        Actor actorToBeMoved = localGameMapInitial.getActorMatrix()[0][2];
+        localGameMapInitial.setPosition(actorToBeMoved,new Vector(1,0));
+
+        Actor[][] actorMatrixActual = localGameMapInitial.getActorMatrix();
+        Actor[][] actorMatrixExpected = localGameMapExpected.getActorMatrix();
+
+        assertArrayEquals(actorMatrixExpected,actorMatrixActual);
+
+
+
 
     }
 
