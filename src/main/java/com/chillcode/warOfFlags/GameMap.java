@@ -102,7 +102,7 @@ public class GameMap {
         }
 
         return actor;
-}
+    }
 
     /**
      * Returns a position of given actor instance

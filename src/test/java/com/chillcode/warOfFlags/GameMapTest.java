@@ -148,18 +148,18 @@ class GameMapTest {
                         ".F.");
 
         Actor rockIndex1_0VectorX0Y1 = localGameMap.getActorMatrix()[1][0];
-        Vector expected = new Vector(0,1);
+        Vector expected = new Vector(0, 1);
 
         assertEquals(expected, localGameMap.getPosition(rockIndex1_0VectorX0Y1));
     }
 
     @Test
-    public void getActorGivenPositionWithinBoundsOfAnActorReturnCorrectActor(){
+    public void getActorGivenPositionWithinBoundsOfAnActorReturnCorrectActor() {
         GameMap localGameMap = new GameMap(
                 "F.P" + System.lineSeparator()
                         + "RPS" + System.lineSeparator() +
                         ".F.");
-        Vector inputPosition = new Vector(2,0);
+        Vector inputPosition = new Vector(2, 0);
         Actor expected = localGameMap.getActorMatrix()[0][2];
 
         Actor actual = localGameMap.getActor(inputPosition);
@@ -168,31 +168,31 @@ class GameMapTest {
     }
 
     @Test
-    public void getActorGivenPositionOutsideBoundsThrowIllegalArgumentException(){
+    public void getActorGivenPositionOutsideBoundsThrowIllegalArgumentException() {
         GameMap localGameMap = new GameMap(
                 "F.P" + System.lineSeparator()
                         + "RPS" + System.lineSeparator() +
                         ".F.");
-        Vector inputPosition = new Vector(3,0);
+        Vector inputPosition = new Vector(3, 0);
 
-        assertThrows(IllegalArgumentException.class, ()-> localGameMap.getActor(inputPosition));
+        assertThrows(IllegalArgumentException.class, () -> localGameMap.getActor(inputPosition));
     }
 
     @Test
-    public void getActorGivenPositionWithinBoundsForNoActorReturnNull(){
+    public void getActorGivenPositionWithinBoundsForNoActorReturnNull() {
         GameMap localGameMap = new GameMap(
                 "F.P" + System.lineSeparator()
                         + "RPS" + System.lineSeparator() +
                         ".F.");
-        Vector inputPosition = new Vector(2,2);
+        Vector inputPosition = new Vector(2, 2);
         Actor actual = localGameMap.getActor(inputPosition);
 
         assertNull(actual);
     }
 
     @Test
-    public void setPosition(){
-        //todo pull in branch <actors> for implementation of equals()
+    public void setPositionWhenActorMovedTrueIfExpectedMatrixAndActualMatrixEquals() {
+        //todo complete and pull in branch <actors> for implementation of equals()
 
         GameMap localGameMapInitial = new GameMap(
                 "F.P" + System.lineSeparator()
@@ -203,16 +203,26 @@ class GameMapTest {
                         + "RPS" + System.lineSeparator() +
                         ".F.");
         Actor actorToBeMoved = localGameMapInitial.getActorMatrix()[0][2];
-        localGameMapInitial.setPosition(actorToBeMoved,new Vector(1,0));
+        localGameMapInitial.setPosition(actorToBeMoved, new Vector(1, 0));
 
         Actor[][] actorMatrixActual = localGameMapInitial.getActorMatrix();
         Actor[][] actorMatrixExpected = localGameMapExpected.getActorMatrix();
 
-        assertArrayEquals(actorMatrixExpected,actorMatrixActual);
+        assertArrayEquals(actorMatrixExpected, actorMatrixActual);
+    }
 
+    @Test
+    public void setPositionWhenActorMovedTrueIfCorrectActorTypeAtCorrectLocation() {
 
+        GameMap localGameMapInitial = new GameMap(
+                "F.P" + System.lineSeparator()
+                        + "RPS" + System.lineSeparator() +
+                        ".F.");
 
+        Actor actorToBeMoved = localGameMapInitial.getActorMatrix()[0][2];
+        localGameMapInitial.setPosition(actorToBeMoved, new Vector(1, 0));
 
+        assertTrue(localGameMapInitial.getActorMatrix()[0][1] instanceof Paper);
     }
 
     private int getMismatches(Actor[][] expected, Actor[][] actual) {
