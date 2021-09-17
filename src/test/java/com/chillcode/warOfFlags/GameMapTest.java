@@ -192,15 +192,15 @@ class GameMapTest {
 
     @Test
     public void setPositionWhenActorMovedTrueIfExpectedMatrixAndActualMatrixEquals() {
-        //todo complete and pull in branch <actors> for implementation of equals()
+        
 
         GameMap localGameMapInitial = new GameMap(
                 "F.P" + System.lineSeparator()
                         + "RPS" + System.lineSeparator() +
                         ".F.");
         GameMap localGameMapExpected = new GameMap(
-                "FP." + System.lineSeparator()
-                        + "RPS" + System.lineSeparator() +
+                "FPP" + System.lineSeparator() // GameMap.tryMovePlayer() is responsible for nulling
+                        + "RPS" + System.lineSeparator() + // positions after move. For test we just copy Paper.
                         ".F.");
         Actor actorToBeMoved = localGameMapInitial.getActorMatrix()[0][2];
         localGameMapInitial.setPosition(actorToBeMoved, new Vector(1, 0));
