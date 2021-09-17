@@ -12,7 +12,25 @@ public class GameUtils {
      * @return
      */
     public static char getChar(Actor actor) {
-        throw new RuntimeException("Method not implemented!");
+        if (actor == null) return '.';
+
+        String prefix = "com.chillcode.warOfFlags.actors.";
+
+        String className = actor.getClass().getName().replace(prefix, "");
+
+        switch (className) {
+            case "Rock":
+                return 'R';
+            case "Paper":
+                return 'P';
+            case "Scissors":
+                return 'S';
+            case "Flag":
+                return 'F';
+            default:
+                throw new IllegalArgumentException(
+                        "Input is not any of the legal types : Rock, Paper, Scissors, Flag, null");
+        }
     }
 
 
