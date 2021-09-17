@@ -206,9 +206,15 @@ public class GameMap {
      * @return
      */
     public Vector getNearestFlagPosition(Player player) {
+        //todo
+        // find nearest flag first directly up and down if no hit then left,right directions
+        // if we get to the edge in the right direction then we go down and first index and continue
+        // if we get to the edge in the left direction then we go up and last index
+        // calculate relative distance to the player (implement GameUtils.getDistance())
+        // compare and return position of the closest
+
         throw new RuntimeException("Method not implemented!");
     }
-
     /**
      * Returns true if given position is within the map's boundaries
      *
