@@ -1,8 +1,8 @@
 package com.chillcode.warOfFlags.actors;
 
-import com.chillcode.warOfFlags.util.Vector;
 import com.chillcode.warOfFlags.GameMap;
 import com.chillcode.warOfFlags.util.Direction;
+import com.chillcode.warOfFlags.util.Vector;
 
 
 /**
@@ -35,6 +35,18 @@ public class Rock extends Player {
     @Override
     public PlayerTeam getTeam() {
         return PlayerTeam.ROCK;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+
+        Rock otherRock = (Rock) o;
+        return (otherRock.getName().equals(this.getName())
+                && otherRock.getKilledPlayers() == this.getKilledPlayers()
+                && otherRock.isAlive() == this.isAlive()
+                && otherRock.getCapturedFlags() == this.getCapturedFlags());
     }
 }
 

@@ -25,5 +25,17 @@ public class Scissors extends Player {
     public PlayerTeam getTeam() {
         return PlayerTeam.SCISSORS;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+
+        Scissors otherScissors = (Scissors) o;
+        return (otherScissors.getName().equals(this.getName())
+                && otherScissors.getKilledPlayers() == this.getKilledPlayers()
+                && otherScissors.isAlive() == this.isAlive()
+                && otherScissors.getCapturedFlags() == this.getCapturedFlags());
+    }
 }
 
