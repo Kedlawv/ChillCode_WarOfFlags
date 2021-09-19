@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class GameUtilsTest {
@@ -50,4 +49,41 @@ class GameUtilsTest {
 
         assertThrows(IllegalArgumentException.class, () -> GameUtils.getChar(illegalActor));
     }
+
+    @Test
+    public void toVectorGivenFourCorrectDirectionsThenFourCorrectVectors() {
+        Vector[] expected = {
+                new Vector(0, -1),
+                new Vector(0, 1),
+                new Vector(-1, 0),
+                new Vector(1, 0)
+        };
+
+        Vector[] actual = new Vector[4];
+        actual[0] = GameUtils.toVector(Direction.UP);
+        actual[1] = GameUtils.toVector(Direction.DOWN);
+        actual[2] = GameUtils.toVector(Direction.LEFT);
+        actual[3] = GameUtils.toVector(Direction.RIGHT);
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void invertedGivenFourDirectionsThenCorrectFourOpposites() {
+        List<Direction> expected = Arrays.asList(
+                Direction.UP,
+                Direction.DOWN,
+                Direction.LEFT,
+                Direction.RIGHT);
+
+        List<Direction> actual = new ArrayList<>();
+        actual.add(GameUtils.inverted(Direction.DOWN));
+        actual.add(GameUtils.inverted(Direction.UP));
+        actual.add(GameUtils.inverted(Direction.RIGHT));
+        actual.add(GameUtils.inverted(Direction.LEFT));
+
+        assertEquals(expected, actual);
+    }
+
+
 }

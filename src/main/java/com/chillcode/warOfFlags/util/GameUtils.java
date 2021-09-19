@@ -42,7 +42,18 @@ public class GameUtils {
      * @return
      */
     public static Vector toVector(Direction dir) {
-        throw new RuntimeException("Method not implemented!");
+        switch (dir) {
+            case UP:
+                return new Vector(0, -1);
+            case DOWN:
+                return new Vector(0, 1);
+            case LEFT:
+                return new Vector(-1, 0);
+            case RIGHT:
+                return new Vector(1, 0);
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -77,7 +88,18 @@ public class GameUtils {
      * @return
      */
     public static Direction inverted(Direction dir) {
-        throw new RuntimeException("Method not implemented!");
+        switch (dir) {
+            case UP:
+                return Direction.DOWN;
+            case DOWN:
+                return Direction.UP;
+            case LEFT:
+                return Direction.RIGHT;
+            case RIGHT:
+                return Direction.LEFT;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
     /**
