@@ -69,6 +69,11 @@ class GameUtilsTest {
     }
 
     @Test
+    public void toVectorGivenNullThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> GameUtils.toVector(null));
+    }
+
+    @Test
     public void invertedGivenFourDirectionsThenCorrectFourOpposites() {
         List<Direction> expected = Arrays.asList(
                 Direction.UP,
@@ -83,6 +88,11 @@ class GameUtilsTest {
         actual.add(GameUtils.inverted(Direction.LEFT));
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void invertedGivenNullThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> GameUtils.inverted(null));
     }
 
 

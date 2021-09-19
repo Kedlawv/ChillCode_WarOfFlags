@@ -42,6 +42,8 @@ public class GameUtils {
      * @return
      */
     public static Vector toVector(Direction dir) {
+        if (dir == null) throw new IllegalArgumentException("Argument can't be null");
+
         switch (dir) {
             case UP:
                 return new Vector(0, -1);
@@ -88,6 +90,8 @@ public class GameUtils {
      * @return
      */
     public static Direction inverted(Direction dir) {
+        if (dir == null) throw new IllegalArgumentException("Argument can't be null");
+
         switch (dir) {
             case UP:
                 return Direction.DOWN;
